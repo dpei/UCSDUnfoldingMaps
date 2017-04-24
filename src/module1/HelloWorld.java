@@ -14,7 +14,7 @@ import de.fhpotsdam.unfolding.utils.MapUtils;
   * by adding a second map on the right
   * Author: UC San Diego Coursera Intermediate Programming team
   * author modified: Dong Pei
-  * Date: Apr. 22. 2017
+  * Date: Apr. 24. 2017
   * */
 public class HelloWorld extends PApplet
 {
