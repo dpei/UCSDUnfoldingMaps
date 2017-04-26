@@ -8,7 +8,7 @@ import java.util.List;
 
 //Processing library
 import processing.core.PApplet;
-
+import processing.core.PShape;
 //Unfolding libraries
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.marker.Marker;
@@ -27,7 +27,7 @@ import parsing.ParseFeed;
  * Author: UC San Diego Intermediate Software Development MOOC team
  * author modify Dong Pei
  * Date: July 17, 2015
- * last modified: Apr. 25. 2017
+ * last modified: Apr. 26. 2017
  * */
 public class EarthquakeCityMap extends PApplet {
 
@@ -58,6 +58,9 @@ public class EarthquakeCityMap extends PApplet {
 	
 	//
 		
+	/* (non-Javadoc)
+	 * @see processing.core.PApplet#setup()
+	 */
 	public void setup() {
 		size(950, 600, OPENGL);
 
@@ -83,11 +86,29 @@ public class EarthquakeCityMap extends PApplet {
 	    
 	    // Loop through the PointFeature objects and add each point into map.
 	    for (int i = 0; i< earthquakes.size(); i++){
-	    	map.addMarker(createMarker(earthquakes.get(i)));
+	    	// For each PointFeature inside the Earthquakes list, we created a maker
+	    	PointFeature f = earthquakes.get(i);
+	    	SimplePointMarker marker = createMarker(f);
+	    	Object magObj = f.getProperty("magnitude");
+	    	float mag = Float.parseFloat(magObj.toString());
+	    	
+	    	if (mag <= 4.0 ){
+	    		// Blue color
+	    		marker.setColor(color(0,0,225));
+	    		marker.setRadius((float) 5.0);
+	    	}
+	    	else if (mag >= 5.0){
+	    		// Red color
+	    		marker.setColor(color(225,0,0));
+	    		marker.setRadius((float) 15.0);
+	    	}
+	    	else {
+	    		// Yellow color
+	    		marker.setColor(color(255,225,0));
+	    		marker.setRadius((float) 10.0);
+	    	}
+	    	map.addMarker(marker);
 	    }
-	    
-	    
-	    
 	    
 	    // These print statements show you (1) all of the relevant properties 
 	    // in the features, and (2) how to get one property and use it
@@ -117,7 +138,7 @@ public class EarthquakeCityMap extends PApplet {
 	
 	public void draw() {
 	    background(10);
-	    map.draw();	    
+	    map.draw();	
 	    addKey();
 	}
 
@@ -127,6 +148,29 @@ public class EarthquakeCityMap extends PApplet {
 	private void addKey() 
 	{	
 		// Remember you can use Processing's graphics methods here
-	
+		PShape square;
+		// Draw a piece of rectangle
+		square = createShape(RECT, 0, 0,150,250);
+		shape(square, 25, 50);
+		
+		textSize(12);
+		fill(0, 0, 0);
+		
+		text("Earthquake Key", 50, 100);
+		text("5.0+ Magnitude", 65, 155);
+		text("4.0+ Magnitude", 60, 215); 
+		text("Below 4.0", 60, 265); 
+		
+		// Draw three dot with different radiusbackgroundImg.resize
+		fill(255,0,0);
+		ellipse(50, 150, 15, 15);
+		fill(255,255,0);
+		ellipse(50, 210, 10, 10);
+		fill(0,0,255);
+		ellipse(50, 260, 5, 5);
+		// Reset background color to white
+		fill(255,255,255);
+		// Add three notes next to the three dots.
+
 	}
 }
