@@ -20,8 +20,9 @@ import processing.core.PApplet;
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
+ * @author modified by Dong Pei
  * Date: July 17, 2015
+ * last modified: May. 1. 2015
  * */
 public class EarthquakeCityMap extends PApplet {
 	
