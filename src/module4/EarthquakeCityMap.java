@@ -14,6 +14,7 @@ import de.fhpotsdam.unfolding.marker.MultiMarker;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
+import module5.EarthquakeMarker;
 import parsing.ParseFeed;
 import processing.core.PApplet;
 
@@ -190,10 +191,16 @@ public class EarthquakeCityMap extends PApplet {
 			String countryName = country.getStringProperty("name");
 			int quakeNumber = 0;
 			
-			//
+			// Loop over each earthquake to see if it belongs to that country
 			for (Marker earthquake : quakeMarkers){
-				if(isInCountry(earthquake, country)){
-					quakeNumber++; 
+				
+				// Cast the Marker object earthquake into EarthquakeMarker to
+				// specify its class in runtime.
+				EarthquakeMarker eqMarker = (EarthquakeMarker)earthquake;
+				if (eqMarker.isOnLand()) {
+					if (countryName.equals(eqMarker.getStringProperty("country"))) {
+						quakeNumber++;
+					}
 				} else {
 					oceanNumber++;
 				}
