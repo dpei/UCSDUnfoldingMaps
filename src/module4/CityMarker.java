@@ -9,7 +9,8 @@ import processing.core.PGraphics;
 /** Implements a visual marker for cities on an earthquake map
  * 
  * @author UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
+ * @author Dong Pei
+ * @last modified May. 2. 2017
  *
  */
 public class CityMarker extends SimplePointMarker {

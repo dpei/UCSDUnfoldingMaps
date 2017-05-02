@@ -265,7 +265,7 @@ public class EarthquakeCityMap extends PApplet {
 			for (Marker marker : quakeMarkers)
 			{
 				EarthquakeMarker eqMarker = (EarthquakeMarker)marker;
-				if (eqMarker.isOnLand()) {
+				if (eqMarker.isInCountry(earthquake, country)) {
 					if (countryName.equals(eqMarker.getStringProperty("country"))) {
 						numQuakes++;
 					}

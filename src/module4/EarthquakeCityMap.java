@@ -1,8 +1,8 @@
 package module4;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
 import de.fhpotsdam.unfolding.data.GeoJSONReader;
@@ -20,7 +20,7 @@ import processing.core.PApplet;
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
- * @author modified by Dong Pei
+ * @author_modified Dong Pei
  * Date: July 17, 2015
  * last modified: May. 1. 2015
  * */
@@ -36,7 +36,7 @@ public class EarthquakeCityMap extends PApplet {
 	private static final long serialVersionUID = 1L;
 
 	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
-	private static final boolean offline = false;
+	private static final boolean offline = true;
 	
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
@@ -164,8 +164,11 @@ public class EarthquakeCityMap extends PApplet {
 	private boolean isLand(PointFeature earthquake) {
 		
 		// IMPLEMENT THIS: loop over all countries to check if location is in any of them
-		
-		// TODO: Implement this method using the helper method isInCountry
+		for (Marker country : countryMarkers){
+			if (isInCountry(earthquake, country)){ 
+				return true;
+			}
+		}
 		
 		// not inside any country
 		return false;
@@ -179,7 +182,29 @@ public class EarthquakeCityMap extends PApplet {
 	// And LandQuakeMarkers have a "country" property set.
 	private void printQuakes() 
 	{
-		// TODO: Implement this method
+		// Initiate the ocean earthquake number
+		int oceanNumber = 0;
+		// Loop over each country and get the number of earthquakes in that
+		// country
+		for (Marker country : countryMarkers){
+			String countryName = country.getStringProperty("name");
+			int quakeNumber = 0;
+			
+			//
+			for (Marker earthquake : quakeMarkers){
+				if(isInCountry(earthquake, country)){
+					quakeNumber++; 
+				} else {
+					oceanNumber++;
+				}
+				
+			}
+			if (quakeNumber > 0){
+				System.out.println("The country"+countryName+"has"+quakeNumber+"earthquakes");
+				
+			}
+		}
+		System.out.println("The ocean has"+oceanNumber+"earthquakes");
 	}
 	
 	

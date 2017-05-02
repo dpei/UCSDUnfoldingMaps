@@ -6,8 +6,8 @@ import processing.core.PGraphics;
 /** Implements a visual marker for ocean earthquakes on an earthquake map
  * 
  * @author UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- *
+ * @author Dong Pei
+ * @last_modified May. 2. 2017
  */
 public class OceanQuakeMarker extends EarthquakeMarker {
 	
