@@ -14,7 +14,7 @@ import de.fhpotsdam.unfolding.marker.MultiMarker;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
-import module5.EarthquakeMarker;
+import module4.EarthquakeMarker;
 import parsing.ParseFeed;
 import processing.core.PApplet;
 
@@ -22,8 +22,8 @@ import processing.core.PApplet;
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
  * @author_modified Dong Pei
- * Date: July 17, 2015
- * last modified: May. 1. 2015
+ * @date: July 17, 2015
+ * @last_modified: May. 3. 2015
  * */
 public class EarthquakeCityMap extends PApplet {
 	
@@ -141,19 +141,34 @@ public class EarthquakeCityMap extends PApplet {
 		fill(0);
 		textAlign(LEFT, CENTER);
 		textSize(12);
-		text("Earthquake Key", 50, 75);
-		
+		text("Earthquake Key", 50, 60);
+		text("Size ~ Magnitude", 50, 165);
+		// Three shapes represent city and earthquakes
 		fill(color(255, 0, 0));
-		ellipse(50, 125, 15, 15);
-		fill(color(255, 255, 0));
-		ellipse(50, 175, 10, 10);
-		fill(color(0, 0, 255));
-		ellipse(50, 225, 5, 5);
+		triangle(50, 75, 45, 85, 55, 85);
+		fill(color(255,255,255));
+		ellipse(50, 105, 10, 10);
+		fill(color(255,255,255));
+		rect(45, 125, 10, 10);
+		// Three color represent the depth of earthquakes
 		
+		fill(color(255, 255, 0));
+		ellipse(50, 185, 10, 10);
+		fill(color(0, 0, 255));
+		ellipse(50, 215, 10, 10);
+		fill(color(255, 0, 0));
+		ellipse(50, 245, 10, 10);
+		
+		
+		
+		// Add keys
 		fill(0, 0, 0);
-		text("5.0+ Magnitude", 75, 125);
-		text("4.0+ Magnitude", 75, 175);
-		text("Below 4.0", 75, 225);
+		text("City marker", 75, 80);
+		text("Land quake", 75, 100);
+		text("Ocean quake", 75, 125);
+		text("Shallow", 75, 185);
+		text("Intermediate", 75, 215);
+		text("Deep", 75, 245);
 	}
 
 	
@@ -184,34 +199,30 @@ public class EarthquakeCityMap extends PApplet {
 	private void printQuakes() 
 	{
 		// Initiate the ocean earthquake number
-		int oceanNumber = 0;
+		int oceanNumber = quakeMarkers.size();
 		// Loop over each country and get the number of earthquakes in that
 		// country
 		for (Marker country : countryMarkers){
 			String countryName = country.getStringProperty("name");
-			int quakeNumber = 0;
 			
+			int quakeNumber = 0;
 			// Loop over each earthquake to see if it belongs to that country
 			for (Marker earthquake : quakeMarkers){
 				
 				// Cast the Marker object earthquake into EarthquakeMarker to
-				// specify its class in runtime.
+				// specify its class at runtime.
 				EarthquakeMarker eqMarker = (EarthquakeMarker)earthquake;
-				if (eqMarker.isOnLand()) {
-					if (countryName.equals(eqMarker.getStringProperty("country"))) {
+				if (eqMarker.isOnLand() && countryName.equals(eqMarker.getStringProperty("country"))) {
 						quakeNumber++;
-					}
-				} else {
-					oceanNumber++;
 				}
-				
 			}
+			
 			if (quakeNumber > 0){
-				System.out.println("The country"+countryName+"has"+quakeNumber+"earthquakes");
-				
+				System.out.println("The country "+countryName+" has "+quakeNumber+" earthquakes.");
+				oceanNumber=oceanNumber-quakeNumber;
 			}
 		}
-		System.out.println("The ocean has"+oceanNumber+"earthquakes");
+		System.out.println("The ocean has "+oceanNumber+" earthquakes.");
 	}
 	
 	

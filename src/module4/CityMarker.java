@@ -10,7 +10,7 @@ import processing.core.PGraphics;
  * 
  * @author UC San Diego Intermediate Software Development MOOC team
  * @author Dong Pei
- * @last modified May. 2. 2017
+ * @last modified May. 3. 2017
  *
  */
 public class CityMarker extends SimplePointMarker {
@@ -44,7 +44,8 @@ public class CityMarker extends SimplePointMarker {
 		pg.pushStyle();
 		
 		// TODO: Add code to draw a triangle to represent the CityMarker
-		
+		pg.fill(255, 0, 0);
+		pg.triangle(x, y-TRI_SIZE, x-TRI_SIZE, y+TRI_SIZE, x+TRI_SIZE, y+TRI_SIZE);
 		// Restore previous drawing style
 		pg.popStyle();
 	}

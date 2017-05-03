@@ -69,11 +69,33 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		drawEarthquake(pg, x, y);
 		
 		// OPTIONAL TODO: draw X over marker if within past day		
+		drawRecent(pg, x, y);
 		
 		// reset to previous styling
 		pg.popStyle();
 		
 	}
+	
+	
+	// draw a "X" over one earthquake if this earthquake happened within last day. 
+	private void drawRecent(PGraphics pg, float x, float y){
+		String age = getStringProperty("age");;
+		if (age.equals("Past Hour")  || age.equals("Past Day")){
+			
+			pg.strokeWeight(2);
+			int buffer = 2;
+			pg.line(x-(radius+buffer), 
+					y-(radius+buffer), 
+					x+radius+buffer, 
+					y+radius+buffer);
+			pg.line(x-(radius+buffer), 
+					y+(radius+buffer), 
+					x+radius+buffer, 
+					y-(radius+buffer));
+		}
+		
+	}
+	
 	
 	// determine color of marker from depth
 	// We suggest: Deep = red, intermediate = blue, shallow = yellow
@@ -81,6 +103,14 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// You might find the getters below helpful.
 	private void colorDetermine(PGraphics pg) {
 		//TODO: Implement this method
+		float depth = this.getDepth();
+		if(depth >= 0 && depth < 70){
+			pg.fill(255,255, 0);
+		} else if (depth >=70 && depth < 300){
+			pg.fill(0, 0, 255);
+		} else if (depth >=300 && depth < 700){
+			pg.fill(255, 0, 0);			
+		}
 	}
 	
 	

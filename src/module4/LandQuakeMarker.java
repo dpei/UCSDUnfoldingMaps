@@ -29,7 +29,7 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		// DO NOT set the fill color here.  That will be set in the EarthquakeMarker
 		// class to indicate the depth of the earthquake.
 		// Simply draw a centered circle.
-		
+		pg.ellipse(x,y,(2)*radius,(2)*radius);
 		// HINT: Notice the radius variable in the EarthquakeMarker class
 		// and how it is set in the EarthquakeMarker constructor
 		
