@@ -46,6 +46,8 @@ public abstract class CommonMarker extends SimplePointMarker {
 			}
 		}
 	}
+	
+	// Two methods were promised to draw in its subclass
 	public abstract void drawMarker(PGraphics pg, float x, float y);
 	public abstract void showTitle(PGraphics pg, float x, float y);
 }
