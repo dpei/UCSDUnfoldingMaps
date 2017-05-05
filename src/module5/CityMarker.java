@@ -11,7 +11,7 @@ import processing.core.PGraphics;
  * 
  * @author UC San Diego Intermediate Software Development MOOC team
  * @author Dong Pei
- * @last_modified May. 4. 2015
+ * @last_modified May. 4. 2017
  *
  */
 // TODO: Change SimplePointMarker to CommonMarker as the very first thing you do 
@@ -51,8 +51,8 @@ public class CityMarker extends CommonMarker {
 	/** Show the title of the city if this marker is selected */
 	public void showTitle(PGraphics pg, float x, float y)
 	{
+		//  For a city, display its name, country, and population. 
 		
-		// TODO: Implement this method
 	}
 	
 	
