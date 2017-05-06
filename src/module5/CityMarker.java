@@ -11,7 +11,7 @@ import processing.core.PGraphics;
  * 
  * @author UC San Diego Intermediate Software Development MOOC team
  * @author Dong Pei
- * @last_modified May. 4. 2017
+ * @last_modified May. 6. 2017
  *
  */
 // TODO: Change SimplePointMarker to CommonMarker as the very first thing you do 
@@ -52,6 +52,23 @@ public class CityMarker extends CommonMarker {
 	public void showTitle(PGraphics pg, float x, float y)
 	{
 		//  For a city, display its name, country, and population. 
+		String city = this.getCity();
+		String country = this.getCountry();
+		float population = this.getPopulation();
+		String info = city+" in "+country+" has "+ population+" million people";
+		pg.pushStyle();
+		pg.rectMode(PConstants.CORNER);
+		// draw border around the shape orange color outline
+		pg.stroke(0,0,255);
+		// fill in color of the stroke with white color fill
+		pg.fill(255,255,255);
+		// Give enough length to the text box
+		pg.rect(x, y + 15, pg.textWidth(info) +6, 18, 5);
+		// align the text into text box
+		pg.textAlign(PConstants.LEFT, PConstants.TOP);
+		pg.fill(0);
+		pg.text(info, x + 3 , y + 16);
+		pg.popStyle();
 		
 	}
 	
