@@ -22,7 +22,7 @@ import processing.core.PApplet;
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
  * @author Dong Pei
- * @last_updated: May. 6. 2017
+ * @last_updated: May. 7. 2017
  * */
 public class EarthquakeCityMap extends PApplet {
 	
@@ -175,13 +175,11 @@ public class EarthquakeCityMap extends PApplet {
 			// markerm.threatCircle(); 
 			unhideMarkers();
 			lastClicked = null;
-		} 
-		// determine if the mouse clicked a marker 
-		if (){
-			return;
 		}
 		
+		// determine if the mouse clicked a marker
 		else {
+		
 			// determine which is selected. then hide other markers ()
 			hideMarker(quakeMarkers);
 			hideMarker(cityMarkers);
@@ -189,11 +187,7 @@ public class EarthquakeCityMap extends PApplet {
 		}
 	}
 	
-	// helper method to determine if a mouse clicked a marker
-	// for Marker marker in marker.isInside(map, mouseX, mouseY)
-	
-	
-	
+
 	// loop over and hide all markers except for selected marker
 	//private void hideMarker(List<Marker> markers) {
 	private void hideMarker(List<Marker> markers) {
