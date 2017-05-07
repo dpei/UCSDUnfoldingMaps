@@ -145,12 +145,12 @@ public class EarthquakeCityMap extends PApplet {
 	// 
 	private void selectMarkerIfHover(List<Marker> markers)
 	{
-		// Abort if there is already one marker selected
+		// Abort if there is already one marker hovered over a marker
 		if (lastSelected != null) {
 			return;
 		}
 		
-		// If no marker was selected, select the marker inside cursor
+		// If no marker was hovered, select the marker inside cursor
 		for (Marker m: markers){
 			CommonMarker marker = (CommonMarker) m;
 			boolean inside = marker.isInside(map, mouseX, mouseY);
