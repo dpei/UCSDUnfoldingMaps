@@ -2,6 +2,7 @@ package module6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -21,11 +22,11 @@ import processing.core.PApplet;
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- * Date: July 17, 2015
+ * @author Dong Pei
+ * @last_modified: May. 7. 2017
+ * 
  * */
-public class EarthquakeCityMap extends PApplet {
-	
+public class EarthquakeCityMap extends PApplet{
 	// We will use member variables, instead of local variables, to store the data
 	// that the setUp and draw methods will need to access (as well as other methods)
 	// You will use many of these variables, but the only one you should need to add
@@ -82,7 +83,7 @@ public class EarthquakeCityMap extends PApplet {
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
-		//earthquakesURL = "test2.atom";
+		earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
 		//earthquakesURL = "quiz2.atom";
@@ -124,7 +125,8 @@ public class EarthquakeCityMap extends PApplet {
 	    map.addMarkers(quakeMarkers);
 	    map.addMarkers(cityMarkers);
 	    
-	    
+	    // print earthquakes based on their magnitude.
+	    sortAndPrint(4);
 	}  // End setup
 	
 	
@@ -136,9 +138,30 @@ public class EarthquakeCityMap extends PApplet {
 	}
 	
 	
-	// TODO: Add the method:
-	//   private void sortAndPrint(int numToPrint)
-	// and then call that method from setUp
+	// Sort the earthquake based on magnitude. Earthquake with gigger magnitute
+	// are on the left of sorted list.
+	private void sortAndPrint(int numToPrint) {
+		ArrayList<EarthquakeMarker> sortedQuakes = new ArrayList<EarthquakeMarker>();
+		for (Marker m : quakeMarkers){
+			EarthquakeMarker marker = (EarthquakeMarker) m;
+			sortedQuakes.add(marker);
+			
+		}
+		// new array from this based on Magnitude
+		Collections.sort(sortedQuakes);
+		
+		
+		//print the top numToPrint number of earthquakes
+		
+		if (numToPrint < sortedQuakes.size()) {
+			for (int i=0; i < numToPrint; i++){
+				System.out.println(sortedQuakes.get(i));
+			}
+		}
+	}
+		
+	
+
 	
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
