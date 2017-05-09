@@ -182,8 +182,8 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		return isOnLand;
 	}
 	
-	// Implements the compareTo method
-	public int comparareTo(EarthquakeMarker other){
+	// Implements the compareTo() method promised by comparable interface
+	public int compareTo(EarthquakeMarker other){
 		if (this.getMagnitude() > other.getMagnitude()){
 			return -1;
 		} else if (this.getMagnitude() < other.getMagnitude()) {
@@ -192,6 +192,4 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 			return 0;
 		}
 	}
-	
-	
 }

@@ -23,7 +23,7 @@ import processing.core.PApplet;
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
  * @author Dong Pei
- * @last_modified: May. 7. 2017
+ * @last_modified: May. 9. 2017
  * 
  * */
 public class EarthquakeCityMap extends PApplet{
@@ -83,7 +83,7 @@ public class EarthquakeCityMap extends PApplet{
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
-		earthquakesURL = "test2.atom";
+		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
 		//earthquakesURL = "quiz2.atom";
@@ -126,7 +126,7 @@ public class EarthquakeCityMap extends PApplet{
 	    map.addMarkers(cityMarkers);
 	    
 	    // print earthquakes based on their magnitude.
-	    sortAndPrint(4);
+	    sortAndPrint(11);
 	}  // End setup
 	
 	
@@ -157,7 +157,12 @@ public class EarthquakeCityMap extends PApplet{
 			for (int i=0; i < numToPrint; i++){
 				System.out.println(sortedQuakes.get(i));
 			}
+		} else {
+			for (int i=0; i < sortedQuakes.size(); i++){
+				System.out.println(sortedQuakes.get(i));
+			}
 		}
+		
 	}
 		
 	
